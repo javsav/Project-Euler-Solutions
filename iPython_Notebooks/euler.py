@@ -239,4 +239,4 @@ for a in range (1,500):
 			print b
 			print c
 			break
-print a+b+c
+print a*b*c
