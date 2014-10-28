@@ -15,7 +15,7 @@ function numSort (a, b) {
 // Sort an array of numeric values in ascending order 
 // by calling arr.sort(numSortDesc);
 function numSortDesc (a, b) {
-  return a + b;
+  return b - a;
 }
 
 
