@@ -4,6 +4,21 @@
 Project Euler Functions
 */
 
+// Local (not exported) functions
+// Sort helpers
+// Sort an array of numeric values in ascending order 
+// by calling arr.sort(numSort);
+function numSort (a, b) {
+  return a - b;
+}
+
+// Sort an array of numeric values in ascending order 
+// by calling arr.sort(numSortDesc);
+function numSortDesc (a, b) {
+  return a + b;
+}
+
+
 // Export a function that returns the sum of an array of integers
 exports.sum = function (arr) {
   var sum = 0;
@@ -24,30 +39,53 @@ exports.fib = function (n) {
      b = c + b
   }
   return a;
-}
+} 
 
 exports.getFactors = function (n) {
   factors = [];
-  for (i = 1; i <= (n/2.0); i += 1) {
+  for (i = 1; i < (Math.floor(Math.sqrt(n)) + 1); i += 1) {
     if (n % i == 0) {
       factors.push(i);
+      factors.push(n / i);
     }
   }
-  factors.push(n);
-  return factors;
+  return factors.sort(numSort);
 }
 
 exports.isPrime = function(n) {
+  // return false if an undefined, null or non-number is passed
+  if (n === null || n === undefined || typeof(n) !== "number") {
+    return false;
+  }
+  if (n === 1) {
+    return false;
+  }
+  if (n === 2) {
+    return true;
+  }
+
   var factors = [];
-  for (i = 1; i <= Math.sqrt(n); i++) {
+  
+  for (i = 1; i < Math.floor(Math.sqrt(n)) + 1; i++) {
     if (n % i == 0) {
-      factors.push(i);
-      if (factors.length > 1) {
+      if (factors.length > 2) {
         return false;
+      } else {
+        factors.push(i);
+        factors.push(n / i);
       }
     }
+    if (factors.length > 2) {
+      return false;
+    }
   }
-  return true; // only one factor of 
+  return true;
 }
 
+exports.max = function (arr) {
+  return arr.sort(numSortDesc)[0];
+}
 
+exports.min = function (arr) {
+  return arr.sort(numSort)[0];
+}
