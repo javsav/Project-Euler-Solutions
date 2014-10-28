@@ -28,7 +28,7 @@ exports.fib = function (n) {
 
 exports.getFactors = function (n) {
   factors = [];
-  for (i = 1; i <= Math.sqrt(n); i += 2) {
+  for (i = 1; i <= (n/2.0); i += 1) {
     if (n % i == 0) {
       factors.push(i);
     }
