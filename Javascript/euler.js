@@ -28,6 +28,14 @@ exports.sum = function (arr) {
   return sum;
 }
 
+// Export a function that returns the product of an array of integers
+exports.product = function (arr) {
+  var product = 1;
+  for (i = 0; i < arr.length; i++) {
+    product *= arr[i];
+  }
+  return product;
+}
 // Declare a function that returns the nth fibonacci number
 exports.fib = function (n) {
   var a = 0, b = 1;
@@ -46,13 +54,15 @@ exports.getFactors = function (n) {
   for (i = 1; i < (Math.floor(Math.sqrt(n)) + 1); i += 1) {
     if (n % i == 0) {
       factors.push(i);
-      factors.push(n / i);
+      if (i !== (n / i)) {
+          factors.push(n / i);
+        }
     }
   }
   return factors.sort(numSort);
 }
 
-exports.isPrime = function(n) {
+isPrime = function(n) {
   // return false if an undefined, null or non-number is passed
   if (n === null || n === undefined || typeof(n) !== "number") {
     return false;
@@ -72,7 +82,9 @@ exports.isPrime = function(n) {
         return false;
       } else {
         factors.push(i);
-        factors.push(n / i);
+        if (i !== (n / i)) {
+          factors.push(n / i);
+        }
       }
     }
     if (factors.length > 2) {
@@ -82,10 +94,42 @@ exports.isPrime = function(n) {
   return true;
 }
 
+exports.isPrime = isPrime;
+
 exports.max = function (arr) {
   return arr.sort(numSortDesc)[0];
 }
 
 exports.min = function (arr) {
   return arr.sort(numSort)[0];
+}
+
+exports.arrayToSet = function(arr) {
+  var obj = {};
+  var set = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    if (!(arr[i] in obj)) {
+      obj[arr[i]] = typeof(arr[i]);
+    }
+  }
+
+  for (key in obj) {
+    if (obj[key] = 'number') {
+      set.push(Number(key));
+    } else {
+      set.push(key);
+    }
+  }
+  return set
+}
+
+exports.getNthPrime = function (n) {
+  var primes = [];
+  for (var i = 1; primes.length < n; i++) {
+    if(isPrime(i)) {
+      primes.push(i);
+    }
+  }
+  return primes[primes.length - 1];
 }
