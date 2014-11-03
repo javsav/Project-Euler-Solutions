@@ -30,11 +30,13 @@ exports.sum = function (arr) {
 
 // Export a function that returns the product of an array of integers
 exports.product = function (arr) {
-  var product = 1;
-  for (i = 0; i < arr.length; i++) {
-    product *= arr[i];
+  if (arr instanceof Array) { 
+    var product = 1;
+    for (i = 0; i < arr.length; i++) {
+      product *= arr[i];
+    }
+    return product;
   }
-  return product;
 }
 // Declare a function that returns the nth fibonacci number
 exports.fib = function (n) {
