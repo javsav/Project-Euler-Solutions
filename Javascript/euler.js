@@ -135,3 +135,11 @@ exports.getNthPrime = function (n) {
   }
   return primes[primes.length - 1];
 }
+
+exports.getNthTriangle = function (n) {
+  var sum = 0;
+  for (var i = 1; i <= n; i++) {
+    sum = sum + i;
+  }
+  return sum;
+}
