@@ -20,13 +20,15 @@ function numSortDesc (a, b) {
 
 
 // Export a function that returns the sum of an array of integers
-exports.sum = function (arr) {
-  var sum = 0;
+sum = function (arr) {
+  var s = 0;
   for (i = 0; i < arr.length; i++) {
-    sum += arr[i];
+    s += arr[i];
   }
-  return sum;
+  return s;
 }
+
+exports.sum = sum;
 
 // Export a function that returns the product of an array of integers
 exports.product = function (arr) {
@@ -143,3 +145,23 @@ exports.getNthTriangle = function (n) {
   }
   return sum;
 }
+
+factorial = function (n) {
+  if (n < 0 || typeof(n) !== 'number') {
+    throw "Error: must pass a positive integer to factorial function."
+  }
+    az = [1,1,2];
+    
+    if (n <= 2) {
+      return az[n];
+    } 
+      
+    for (var i = 3; i <= n; i++) {
+      az.push(i * az[az.length - 1]);
+    }
+    
+    return az[az.length - 1];
+    
+}
+
+exports.factorial = factorial;
