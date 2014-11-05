@@ -100,6 +100,13 @@ isPrime = function(n) {
 
 exports.isPrime = isPrime;
 
+
+isPalindrome = function (n) {
+  return n.toString() === n.toString().split('').reverse().join('');
+}
+
+exports.isPalindrome = isPalindrome;
+
 exports.max = function (arr) {
   return arr.sort(numSortDesc)[0];
 }

@@ -12,15 +12,13 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 var euler = require('./euler.js');
 
-function isPalindrome(n) {
-  return n.toString() === n.toString().split('').reverse().join('');
-}
-
 var palindromes = [];
 
 for (var i = 999; i > 99; i--) {
   for (var j = 999; j > 99; j--) {
-    if (isPalindrome(i * j)) palindromes.push(i*j);
+    if (euler.isPalindrome(i * j)) {
+      palindromes.push(i*j);
+    }
   }
 }
 
