@@ -172,3 +172,63 @@ factorial = function (n) {
 }
 
 exports.factorial = factorial;
+
+getAllRotations = function (n) {
+  var str = n.toString();
+  //console.log('str: ' + str);
+  var arr = str.split('');
+  //console.log('arr: ' + arr.join(','));
+  var returnable = [];
+  for (var i = 0; i < arr.length; i++) {
+    var newArr = arr;
+    newArr.push(arr.shift());
+    //console.log('newArr: ' + newArr.join(','));
+    var newStr = newArr.join('');
+    //console.log(newStr);
+    returnable.push(Number(newStr));
+  }
+  //console.log(returnable);
+  return returnable.sort(numSort);
+}
+
+exports.getAllRotations = getAllRotations;
+
+permute = function (list) {
+/* 
+Minor alterations made to version from 
+www.thatjsdude.com/interview/js1.html#permutatuion \
+https://github.com/khan4019/front-end-Interview-Questions/blob/master/js1.html
+*/
+  var len = list.length;
+  
+// Return an empty 2D array if list is empty
+  if (len === 0) {
+    return [[]];
+  }
+  
+  var permutations = [];
+  
+/* 
+Recursively generate permutations for arrays containing 1 or more items.
+Will probably fail with more than 5 items (6! = 720)
+*/
+  var i = 0;
+  
+  while( i < list.length) {
+    var copy = Object.create(list);
+    var currentElement = copy.splice(i,1);
+    var otherElements = permute(copy);
+
+    var j = 0;
+
+    while (j < otherElements.length) {
+      var onePermutation = currentElement.concat(otherElements[j]);
+      permutations.push(onePermutation);
+      j += 1;
+    }
+    i += 1;
+  }
+  return permutations;
+}
+
+exports.permute = permute;
