@@ -1,6 +1,6 @@
-Problem 15: Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
+#Problem 15: Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.
 
-How many such routes are there through a 20×20 grid?
+#How many such routes are there through a 20×20 grid?
 
 def factorial(n):
     fac=[]
@@ -29,7 +29,7 @@ def choose(n,m):
 
 
 def lattice(n,m):
-#Determine the number of routes from the top left to the bottom right corner of a m*n grid/lattice while only moving down and right
+#Determines the number of routes from the top left to the bottom right corner of a m*n grid/lattice whilst only moving down or right
     i = choose((2*m),n)
     return str(i)
 
