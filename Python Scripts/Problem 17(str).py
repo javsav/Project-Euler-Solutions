@@ -1,27 +1,21 @@
 
-# coding: utf-8
-
-# In[71]:
-
 all=[]
 one2nine = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 ten2nineteen = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"]
 twenty2ninety = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
 
 
-# In[72]:
 
 for i in one2nine:
     all.append(i)
 
 
-# In[73]:
 
 for i in ten2nineteen:
     all.append(i)
 
 
-# In[74]:
+
 
 for i in twenty2ninety:
     all.append(i)
@@ -29,7 +23,7 @@ for i in twenty2ninety:
         all.append(i+j)
 
 
-# In[75]:
+
 
 one2ninetynine = []
 for i in all:
@@ -37,12 +31,10 @@ for i in all:
     
 
 
-# In[ ]:
-
-one2ninetynine = all
 
 
-# In[76]:
+
+
 
 for i in one2nine:
     hundredz = i + "hundred"
@@ -52,24 +44,23 @@ for i in one2nine:
         all.append(num)
 
 
-# In[77]:
+
 
 all.append("onethousand")
 
 
-# In[78]:
+
 
 for i in all:
     if type(i) is not str:
         print i
 
 
-# In[79]:
 
 len(''.join(all))
 
 
-# In[ ]:
+
 
 
 
