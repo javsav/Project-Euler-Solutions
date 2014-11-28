@@ -57,7 +57,7 @@ for i in all:
 
 
 
-len(''.join(all))
+print len(''.join(all))
 
 
 

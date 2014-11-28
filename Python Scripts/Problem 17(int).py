@@ -52,5 +52,5 @@ all.append(len("onethousand"))
 
 
 
-sum(all)
+print sum(all)
 

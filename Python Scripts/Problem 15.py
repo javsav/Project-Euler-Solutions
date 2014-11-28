@@ -31,7 +31,7 @@ def choose(n,m):
 def lattice(n,m):
 #Determines the number of routes from the top left to the bottom right corner of a m*n grid/lattice whilst only moving down or right
     i = choose((2*m),n)
-    return str(i)
+    print str(i)
 
 
 

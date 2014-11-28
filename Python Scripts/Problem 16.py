@@ -20,6 +20,6 @@ pow = map(int, pow)
 
 
 
-sum(pow)
+print sum(pow)
 
 #Answer: 1366

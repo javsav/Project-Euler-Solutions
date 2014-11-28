@@ -17,11 +17,11 @@ def collatz(n):
     return len(col)
 
 
-#collen=[]
-#for y in range (1,1000000):
-    #z=collatz(y)
-    #collen.append(z)
-#print collen
+collen=[]
+for y in range (1,1000000):
+    z=collatz(y)
+    collen.append(z)
+print collen
                 
 
 
