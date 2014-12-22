@@ -2,7 +2,7 @@ def propdiv(n):
     divs = []
     if n % 2 == 0:
         divs.append(n/2)
-    for x in range(1,(n/2)-1):
+    for x in range(1,(n/2)-n/4):
         if n % x == 0:
             divs.append(x)
     return sum(divs)
