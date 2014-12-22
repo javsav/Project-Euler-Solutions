@@ -12,8 +12,8 @@ def amicable(n,m):
         return True
     
 am = []
-for a in range (0,10000,2):
-    for b in range (0,10000,2):
+for a in range (-2,10000,4):
+    for b in range (0,10000,4):
 		if a != b:
 			if amicable(a,b) == True:
 				print a				
