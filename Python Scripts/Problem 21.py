@@ -1,11 +1,10 @@
 def propdiv(n):
-    divs = []
-    if n % 2 == 0:
-        divs.append(n/2)
-    for x in range(1,(n/3):
-        if n % x == 0:
-            divs.append(x)
-    return sum(divs)
+    result = set()
+    for x in range(1, int(n ** 0.5) + 1):
+        div, mod = divmod(n, x)
+        if mod == 0:
+            result |= {x, div}
+    return sum(result)-n
             
 def amicable(n,m):
     if propdiv(n) == m and propdiv(m) == n:
