@@ -1,18 +1,20 @@
+import math
 def propdiv(n):
-    result = set()
-    for x in range(1, int(n ** 0.5) + 1):
-        div, mod = divmod(n, x)
-        if mod == 0:
-            result |= {x, div}
-    return sum(result)-n
+    results = []
+    for i in xrange(1,int(math.sqrt(n))+1):
+        if n%i == 0:
+            x = n/i
+            results.append(i)
+            results.append(x)
+    return sum(results)-n
             
 def amicable(n,m):
     if propdiv(n) == m and propdiv(m) == n:
         return True
     
 am = []
-for a in range (0,10000,2):
-    for b in range (0,10000,2):
+for a in xrange (0,10000,2):
+    for b in xrange (0,10000,2):
 		if a != b:
 			if amicable(a,b) == True:
 				print a				
