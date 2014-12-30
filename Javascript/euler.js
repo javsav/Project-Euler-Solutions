@@ -4,6 +4,8 @@
 Project Euler Functions
 */
 
+var Big = require('./simpleBigInt.js').Big;
+
 // Local (not exported) functions
 // Sort helpers
 // Sort an array of numeric values in ascending order 
@@ -153,7 +155,14 @@ exports.getNthTriangle = function (n) {
   return sum;
 }
 
-factorial = function (n) {
+var factorial = function(n) {
+  var ans = n < 22 ? fastFactorial(n) : slowFactorial(n);
+  return ans;
+}
+
+exports.factorial = factorial;
+
+var fastFactorial = function (n) {
   if (n < 0 || typeof(n) !== 'number') {
     throw "Error: must pass a positive integer to factorial function."
   }
@@ -171,9 +180,9 @@ factorial = function (n) {
     
 }
 
-exports.factorial = factorial;
+exports.fastFactorial = fastFactorial;
 
-getAllRotations = function (n) {
+var getAllRotations = function (n) {
   var str = n.toString();
   //console.log('str: ' + str);
   var arr = str.split('');
@@ -193,7 +202,7 @@ getAllRotations = function (n) {
 
 exports.getAllRotations = getAllRotations;
 
-permute = function (list) {
+var permute = function (list) {
 /* 
 Minor alterations made to version from 
 www.thatjsdude.com/interview/js1.html#permutatuion \
@@ -232,3 +241,79 @@ Will probably fail with more than 5 items (6! = 720)
 }
 
 exports.permute = permute;
+
+var multiply = function (list1, list2) {
+  list1 = list1.reverse();
+  list2 = list2.reverse();
+  var result = [];
+
+  for (var i = 0; i < list1.length; i++) {
+    for (var j = 0; j < list2.length; j++) {
+      var originalValue = 0;
+      var k = i + j;
+
+      if (result[k]) originalValue = result[k];
+
+      result[k] = (list1[i] * list2[j]) + originalValue;
+
+      if (result[k] > 9) {
+        nextPositionOriginalValue = 0;
+        
+        result[k+1] ? nextPositionOriginalValue =  result[k + 1] : result[k + 1] = nextPositionOriginalValue;
+
+        result[k + 1] += Math.floor(result[k] / 10);
+
+        result[k] -= Math.floor(result[k] / 10) * 10;
+      }
+      
+
+
+    }
+  }
+  return result.reverse();
+}
+
+exports.multiply = multiply;
+
+var listify = function (number) {
+  return number.toString(10).split('').map(function(a) {return Number(a)});
+}
+
+exports.listify = listify;
+
+var numify = function (list) {
+  return Number(list.join(''));
+}
+
+exports.numify = numify;
+
+
+
+var slowFactorial = function (n) {
+  if (!(n instanceof Big)) {
+    var n = new Big(n);
+  }
+
+    var one = new Big(1);
+    var two = new Big(2);
+
+    var az = [one,one,two];
+    
+    if (n.lte(2)) {
+      return new Big(az[n.number]);
+    }
+
+    var i = new Big(3);
+      
+    for (; i.lte(n); i.add(1)) {
+
+      var j = i.multiply(az[az.length - 1]);
+
+      az.push(j);
+    }
+    
+    return az[az.length - 1];
+    
+}
+
+exports.slowFactorial = slowFactorial;
