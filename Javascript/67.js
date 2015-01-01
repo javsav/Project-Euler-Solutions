@@ -6,7 +6,7 @@ Problem 67
 */
 
 var fs = require('fs');
-var fileName = '../p067_triangle.txt'
+var fileName = '../shared_resources/p067_triangle.txt'
 
 
 function maxSum(one, two, shared) {

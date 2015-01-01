@@ -22,7 +22,7 @@ function numSortDesc (a, b) {
 
 
 // Export a function that returns the sum of an array of integers
-sum = function (arr) {
+var sum = function (arr) {
   var s = 0;
   for (i = 0; i < arr.length; i++) {
     s += arr[i];
@@ -68,7 +68,7 @@ exports.getFactors = function (n) {
   return factors.sort(numSort);
 }
 
-isPrime = function(n) {
+var isPrime = function(n) {
   // return false if an undefined, null or non-number is passed
   if (n === null || n === undefined || typeof(n) !== "number") {
     return false;
@@ -317,3 +317,29 @@ var slowFactorial = function (n) {
 }
 
 exports.slowFactorial = slowFactorial;
+
+var getProperDivisors = function(n) {
+    var divisors = [1];
+    for (var i = 2; i < Math.sqrt(n) + 1; i++) {
+        if (n % i === 0) {
+            divisors.push(i);
+            if (divisors.indexOf(n / i) === -1) {
+                divisors.push(n/i);
+            }
+        } 
+    }
+    return divisors.sort(numSort);
+}
+
+exports.getProperDivisors = getProperDivisors;
+
+var isPairAmicable = function (a, b) {
+  if (sum(getProperDivisors(a)) === b) {
+    if (sum(getProperDivisors(b)) === a) {
+      return true;
+    }
+  }
+  return false;
+}
+
+exports.isPairAmicable = isPairAmicable;

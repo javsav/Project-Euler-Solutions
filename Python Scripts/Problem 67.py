@@ -1,5 +1,5 @@
 
-file_name = 'C:\Project-Euler-Solutions\p067_triangle.txt'
+file_name = '../shared_resources/p067_triangle.txt'
 fin = file(file_name, 'r')
 
 first_hacky_array = []
