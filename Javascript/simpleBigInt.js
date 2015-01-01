@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
 /* Work Still Required:
- -- Need an else in constructor
- -- Rewrite subtract method so that it works
+ -- Need an else in constructor - why?
  -- module.exports Big
- -- test with euler problem 20
  -- Arrays with negative numbers need attention
 
 */
@@ -73,13 +71,10 @@ function Big(input) {
   }
 
   // Array type inputs
-  if (input instanceof Array ) {//&& !(input instanceof Big)) {
-  //console.log('ARRAY passed');
+  if (input instanceof Array ) {
     if (input[0] === '-') {
-      //console.log('This was a negative ARRAY: ')
       this.sign = 'NEGATIVE';
       this.number = input.slice(1, input.length).map(function(a) {return Number(a)});
-      console.log(this.number.join(''));
     }
     else if (input.length === 1 && input[0] === 0) {
       this.sign = 'NEUTRAL';
@@ -87,9 +82,9 @@ function Big(input) {
     else {
       this.sign = 'POSITIVE';
     }
-    if (this.sign == 'NEGATIVE') {
+    if (this.sign === 'NEGATIVE') {
       var array = input;
-      //this.number = array.slice(1, array.length).map(function(a) {return Number(a)});
+      this.number = array.slice(1, array.length).map(function(a) {return Number(a)});
  
     } 
     else {
@@ -299,7 +294,6 @@ Big.prototype.add = function (big2) {
 
 
 // Add leading zeroes to ensure we add big2 to this
-//console.log('x: ' + x.number.join('') + ' y: ' + y.number.join(''));
   if (y.number.length > x.number.length) {
     x.number.reverse();
     for (var i = 0; i < (y.number.length - x.number.length + 1); i++) {
@@ -379,8 +373,8 @@ var absY = y;
   } 
 // Else put y on top and call .invert() later
   else {
-    topNumber = y.number;//.reverse();
-    bottomNumber = x.number;//.reverse();
+    topNumber = y.number;
+    bottomNumber = x.number;
     inversionNeeded = 1;
   }
 
@@ -400,30 +394,19 @@ if (bottomNumber.length < topNumber.length) {
   topNumber.reverse();
   bottomNumber.reverse();
   for (var i = 0; i < topNumber.length; i++) { // for all digits in number...
-    //console.log('i: ' + i.toString());
     if (topNumber[i] - bottomNumber[i] >= 0) { // if top digit >= bottom digit
       
       result.push(topNumber[i] - bottomNumber[i]); // push to answer,otherwise...
     }
     //borrowing required
     else {
-      //console.log('borrowing required')
       
       for (var j = 1; bottomNumber[i] > topNumber[i]; j++) {
-        //console.log('j: ' + j.toString());
-        //console.log('i: ' + i.toString());
-        // console.log('top number:' + topNumber.join(''));
-        // console.log('bottom number:' + bottomNumber.join(''));
         if (topNumber.length >= i + j) { // can borrow
-          // console.log('can borrow')
           if (topNumber[i + j] > 0) { // can stop borrowing
-            // console.log('can stop borrowing')
             for(; j > 0; j--) {
-              //console.log(x);
               topNumber[i + j] -= 1;
               topNumber[i + j - 1] += 10;
-              // console.log(topNumber[i + j]);
-              // console.log(topNumber[i + j - 1]);
             }
             result.push(topNumber[i] - bottomNumber[i]);
             break;
@@ -431,30 +414,19 @@ if (bottomNumber.length < topNumber.length) {
           
         } 
         else { // can't borrow
-            // console.log('last number')
-            // console.log(10 + topNumber[i] - bottomNumber[i]);
           result.push(10 + topNumber[i] - bottomNumber[i]);
           inversionNeeded += 1;
           break;
         }
-        //if ()
-        
-        
-       }
-      
-      // else, subtract and change sign
-      
+       } 
     }
-
   }
-
 
 
   var sign = x.sign;
   result.reverse();
   
   if (inversionNeeded % 2 === 1) {
-    console.log ('inversion was needed' + inversionNeeded.toString());
     sign = x.invert().sign;
   }
 
@@ -467,28 +439,6 @@ if (bottomNumber.length < topNumber.length) {
 
 }
 
-Big.prototype.borrow = function (topNumber, bottomNumber, index) {
-// If this is the last number, you can't borrow
-  if (index + 1 >= topNumber.length) {
-        console.log('last number')
-        result.push(topNumber[index] - bottomNumber[index]);
-        inversionNeeded += 1;
-      }
-      // Else borrow
-      else {
-        if (topNumber[index+1] === 0) {
-          console.log('problem');
-          this.borrow(topNumber, bottomNumber, index+1)
-        } 
-        else {
-          topNumber[index+1] -= 1;
-          var num = 10 + topNumber[index] - bottomNumber[index];
-          console.log('borrowing')
-          console.log(num);
-          result.push(num);
-        }
-      }
-}
 
 
 
@@ -566,22 +516,26 @@ Big.prototype.multiply = function (big2) {
 
 // convert Big object to String
 Big.prototype.toString = function() {
-  //console.log(this);
   var string = (this.sign === 'NEGATIVE' ? '-' : '');
   string += this.number.join('');
-  //console.log(typeof string)
   return string;
 }
 
 // convert Big object to an Array -- needs to implement sign
 Big.prototype.listify = function () {
   var x = this.number;
-  return x.toString(10).split('').map(function(a) {return Number(a)});
+  if (this.sign === 'NEGATIVE') {
+    x.unshift('-');
+  }
+  return x;
 }
 
 // Convert Big object to Number -- needs to implement sign
 Big.prototype.numify = function () {
   var x = Number(this.number.join(''));
+  if (this.sign === 'NEGATIVE') {
+    x = (x * -1);
+  }
   return x;
 }
 
@@ -611,104 +565,6 @@ Big.prototype.plus = Big.prototype.add;
 // Alias 'subtract' method as 'minus' and 'take'
 Big.prototype.minus = Big.prototype.subtract;
 Big.prototype.take = Big.prototype.subtract;
-
-
-
-
-
-/* Executable examples ('sorta-tests') */
-
-
-
-// Comparison tests
-// var x = new Big(new Big(100));
-// var y = new Big('1000');
-// var z = new Big (['-',9]);
-
-// console.log('x: ' + x.toString()); // 100
-// console.log('x inverted: ' + x.invert().toString()); // -100
-// console.log('x inverted absolute: ' + x.invert().abs().toString()); // 100
-// console.log('y: ' + y.toString()); // 1000
-// console.log('y inverted: ' + y.invert().toString()); // -1000
-// console.log('y inverted absolute: ' + y.invert().abs().toString()); // 1000
-// console.log('z: ' + z.toString()); // -9
-// console.log('z inverted: ' + z.invert().toString()); // 9
-// console.log('z inverted absolute: ' + z.invert().abs().toString()); // 9
-
-// console.log('x > x: ' + x.gt(x)); // false
-// console.log('x > y: ' + x.gt(y).toString()); // false
-// console.log('x > z: ' + x.gt(z).toString()); // true
-// console.log('x >= x: ' + x.gte(x).toString()); // true
-// console.log('x >= y: ' + x.gte(y).toString()); // false
-// console.log('x >= z: ' + x.gte(z).toString()); // true
-
-// console.log('x < x: ' + x.lt(x).toString()); // false
-// console.log('x < y: ' + x.lt(y).toString()); // true
-// console.log('x < z: ' + x.lt(z).toString()); // false
-// console.log('x <= x: ' + x.lte(x).toString()); // true
-// console.log('x <= y: ' + x.lte(y).toString()); // true
-// console.log('x <= z: ' + x.lte(z).toString()); // false
-
-
-// Number
-// console.log(
-//   new Big(1000)
-//   .multiply(-2)
-//   .add(-10000)
-//   .toString()
-//  );
-
-// console.log(.toString());
-// console.log(.toString());
-// console.log(.toString());
-// console.log(.toString());
-// console.log(.toString());
-
-
-// String
-
-// var q = new Big('100');
-// console.log(q.toString()); // 100
-// var w = q.multiply('2');
-// console.log(w.toString()); // 200
-// var e = w.take('1000');
-// console.log(e); // -800
-// console.log(
-//    new Big(100)
-//    .multiply('2')
-//   .take(new Big('1000'))
-//   //.toString()
-//   );
-
-// // Array
-// console.log(
-//    new Big(-100)
-//    .multiply([1])
-//   .add(new Big('10'))
-//   //.toString()
-//   );
-
-// // Big
-// console.log(
-//    new Big(100)
-//   .multiply(new Big(-1))
-//   .add(new Big('1000'))
-//   .toString()
-//   );
-
-//console.log((new Big({number: 1, sign: 'NEGATIVE'})) instanceof Big);
-//console.log(new Big({number: 1, sign: 'NEGATIVE'}));
-
-// console.log(
-//    new Big(-100)
-//   );
-
-
-// console.log(
-//    new Big(100)
-//   .add(new Big('1000'))
-//   instanceof Big);
-// //console.log(new Big(150).plus(10));
 
 
 exports.Big = Big;
