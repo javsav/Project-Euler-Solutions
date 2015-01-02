@@ -319,19 +319,62 @@ var slowFactorial = function (n) {
 exports.slowFactorial = slowFactorial;
 
 var getProperDivisors = function(n) {
-    var divisors = [1];
-    for (var i = 2; i < Math.sqrt(n) + 1; i++) {
-        if (n % i === 0) {
-            divisors.push(i);
-            if (divisors.indexOf(n / i) === -1) {
-                divisors.push(n/i);
-            }
-        } 
-    }
-    return divisors.sort(numSort);
+  if (n === 1) return [];
+  if (n === 2) return [1];
+
+  var divisors = [1];
+
+  for (var i = 2; i < Math.sqrt(n) + 1; i++) {
+      if (n % i === 0) {
+        if (divisors.indexOf(i) === -1) {
+          divisors.push(i);
+        }
+        if (divisors.indexOf(n / i) === -1) {
+            divisors.push(n/i);
+        }
+      } 
+  }
+  return divisors.sort(numSort);
 }
 
+//  var getProperDivisors = function (n) {
+//   factors = [];
+//   for (i = 1; i < (Math.floor(Math.sqrt(n)) + 1); i += 1) {
+//     if (n % i == 0) {
+//       factors.push(i);
+//       if (i !== (n / i)) {
+//           factors.push(n / i);
+//         }
+//     }
+//   }
+//   var divisors = factors.sort(numSort);
+//   if(divisors[divisors.length - 1] === n) {
+//     return divisors.pop();
+//   }
+//   else {
+//     return divisors;
+//   }
+// }
+
 exports.getProperDivisors = getProperDivisors;
+
+var isPerfectNumber = function(n) {
+  return sum(getProperDivisors(n)) === n;
+}
+
+exports.isPerfectNumber = isPerfectNumber;
+
+var isDeficientNumber = function(n) {
+  return sum(getProperDivisors(n)) < n;
+}
+
+exports.isDeficientNumber = isDeficientNumber; 
+
+var isAbundantNumber = function(n) {
+  return sum(getProperDivisors(n)) > n;
+}
+
+exports.isAbundantNumber = isAbundantNumber;
 
 var isPairAmicable = function (a, b) {
   if (sum(getProperDivisors(a)) === b) {
