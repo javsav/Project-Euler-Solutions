@@ -5,6 +5,7 @@ Project Euler Functions
 */
 
 var Big = require('./simpleBigInt.js').Big;
+var Set = require('./set.js');
 
 // Local (not exported) functions
 // Sort helpers
@@ -179,6 +180,12 @@ var fastFactorial = function (n) {
     return az[az.length - 1];
     
 }
+
+var choose = function(n, k) {
+  return fastFactorial(n) / (fastFactorial(k) * fastFactorial(n-k))
+}
+
+exports.choose = choose;
 
 exports.fastFactorial = fastFactorial;
 
@@ -384,5 +391,42 @@ var isPairAmicable = function (a, b) {
   }
   return false;
 }
+
+
+var ekpermute = function(list) {
+  var set = new Set(list);
+  var permutations = [];
+  for (var index = 0; index < set.length; index++) {
+    var current = set[index];
+    var remaining = set.slice(0,index).concat(set.slice(index + 1));
+    console.log('current value: ' + current.toString());
+    console.log('remaining values: ' + remaining.toString());
+    //permutations.push([current].concat(remaining));
+    var p = [];
+    for (var i = 0; i < remaining.length; i++) {
+      var permutation = remaining.slice(0,i).concat(current).concat(remaining.slice(i));
+      if (p.every(function(a) {return permutation != a})) {
+          p.push(permutation);
+      } else {console.log('not pushed first: '); console.log(permutation)}
+    if (permutations.every(function(a) {return p != a})) {
+      permutations.push(p);
+    } //else {console.log('not pushed: '); console.log(p)}
+    }
+  }
+  //convert multi-d Array to 1d Array
+  var answer = [];
+  permutations.forEach(function(a) {
+    a.forEach(function(b) {
+      answer.push(b); 
+    })
+  })
+
+  console.log(answer);
+  return answer
+}
+
+exports.ekpermute = ekpermute;
+
+
 
 exports.isPairAmicable = isPairAmicable;
