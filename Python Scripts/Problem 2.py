@@ -10,16 +10,10 @@ def fib(n):
         i += 1
     return max(nums)
 
-nums2 = []	
-for n in xrange (1,4000001):
-    if fib(n)>4000000:
-        max = n
-
-for n in xrange (1,max):
-    if fib(n) % 2 == 0:
-        nums2.append(fib(n))
-        break
-
-
-
-print sum(nums2)
+sum = 0	
+n = 1
+while fib(n)<4000000:
+	if fib(n) % 2 == 0:
+		sum = sum + fib(n)
+	n += 1
+print sum
