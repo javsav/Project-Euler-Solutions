@@ -1,4 +1,4 @@
-tri = [[0 for x in range(15)]for x in range(15)] # Generating 2D array for triangle, followed by manual appending.
+tri = [[0 for x in xrange(15)]for x in range(15)] # Generating 2D array for triangle, followed by manual appending.
 tri[0]=[75]
 tri[1]=[95, 64]
 tri[2]=[17, 47, 82]
@@ -17,11 +17,11 @@ tri[14]=[4, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 4, 23]
 
 triangle_height = len(tri) - 1 #Declaring height for range of recursive algorithm to one less than the height of the triangle to avoid exceeding range due to 2D array starting at 0 rather than 1
 
-for a in range(triangle_height, 0, -1): # Declaring var a for algorithm. Range will start the height of the algorithm at tri[14], with a step of negative 1 in order to move from the bottom to the top of the triangle
+for a in xrange(triangle_height, 0, -1): # Declaring var a for algorithm. Range will start the height of the algorithm at tri[14], with a step of negative 1 in order to move from the bottom to the top of the triangle
     row_length = len(tri[a]) - 1 # Each row has the same length as its height, however we only want the range to extend to the second to last number in that row (because the algorithm uses the number to the right of "current_value" aka "next_value")
     new_array = [] # Declaration of an array within which to place the larger sums of each set of three numbers for each two rows (e.g the first sum will be 62 (next_value) + 63 (shared_value). Must be inside this for loop so a new array is created each time two rows are 'popped'. 
     # This array will eventually end up replacing two rows of the tri array with one row of the max sums of current, next and shared values from those two rows. 
-    for b in range(row_length): # Declaring var b for algorithm, range is row_length as discussed above.
+    for b in xrange(row_length): # Declaring var b for algorithm, range is row_length as discussed above.
         
         
         current_value = tri[a][b] # First example would be tri[14][0] - which is 4
