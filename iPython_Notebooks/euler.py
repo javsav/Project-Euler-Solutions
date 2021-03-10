@@ -231,68 +231,12 @@ print sorted(num)
 """
 #Problem 9
 
-py =[]
-
-def square(a,b,c):
-    '''check if a**2+b**2=c**2'''
-    a = int(a)
-    b = int(b)
-    c = int(c)
-    if a**2 + b**2 == c**2:
-        return True
-    return False
-
-def pysum(a,b,c):
-    '''check if sum of abc=1000'''
-    a = int(a)
-    b = int(b)
-    c = int(c)
-    if a + b + c == 1000:
-        return True
-    return False
-
-d=0
-i=0
-thag = []
-while d<1000:
-    for a in range(1000):
-        for b in range(1000):
-            for c in range(1000):
-                if a+b+c==1000:# and a<b and b<c:
-                    py.append(a)
-                    py.append(b)
-                    py.append(c)
-            d+=1
-print py
-print len(py)
-"""while i<1498:
-    z = py[i] 
-    y = py[i + 1] 
-    x = py[i + 2]
-    if z**2 + y**2 == x**2:
-        thag.append(z)
-        thag.append(y)
-        thag.append(x)
-    i +=3
-print thag
- """       
-
-    
-#while a<1000 and b<1000 and c<1000:
- #   if square(a,b,c) == True and pysum (a,b,c) == True:
-  #      d=a
-   #     e=b
-    #    f=c
-#print d
-#print e
-#print f
-"""
-    if n == 2: 
-        return True   
-    if n % 2 == 0: 
-        return False    
-    for x in range(3, int(n**0.5)+1, 2):
-        if n % x == 0:
-            return False
-    return True
-"""
+for a in range (1,500):
+	for b in range (1, 500):
+		for c in range (1, 500):
+			if a+b+c==1000 and c**2==a**2+b**2 and a<b:
+			print a
+			print b
+			print c
+			break
+print a*b*c
