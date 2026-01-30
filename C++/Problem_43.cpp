@@ -11,18 +11,23 @@
 // Find the sum of all 0 to 9 pandigital numbers with this property.
 #include <string>
 #include <cstdio>
+#include <sstream>
 
-bool isPandigital(int number) {
-    int prime_array[7] = {2,3,5,7,11,13,17};
+bool isPandigital(long unsigned int number) {
+    int prime_array[8] = {2,3,5,7,11,13,17};
     std::string num = std::to_string(number);
     std::string partial;
     int starting_index = 1;
     int prime_index = 0;
-    while (starting_index < 9) {
-        for (int d = starting_index; d < 2; d++) {
+    while (prime_index <= 6) {
+        for (int d = starting_index; d < starting_index + 3; d++) {
             partial += num[d];
         }
-        if (std::stoi(partial) % prime_array[prime_index] != 0) {
+        int partial_num = 0;
+        std::istringstream(partial) >> partial_num;
+        // printf("\n Current partial: %d \n", partial_num);
+        if (partial_num % prime_array[prime_index] != 0) {
+            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
             return false;
         } else {
             prime_index++;
@@ -37,9 +42,9 @@ bool isPandigital(int number) {
 
 int main() {
 
-int totalsum = 0;
+long unsigned int totalsum = 0;
 
-for (int number = 111111111; number < 999999999; number++) {
+for (long unsigned int number = 111111111; number < 999999999; number++) {
     if (isPandigital(number)) {
         totalsum += number;
     }
