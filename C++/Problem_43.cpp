@@ -18,6 +18,7 @@ std::pair<int,int> isPandigital(long unsigned int number) {
 =======
 #include <iostream>
 #include <unordered_set>
+#include <algorithm>
 bool isPandigital(long unsigned int number) {
 >>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
     int prime_array[8] = {2,3,5,7,11,13,17};
@@ -56,8 +57,14 @@ bool isPandigital(long unsigned int number) {
         }
         
     }
+<<<<<<< HEAD
     printf("\n Pandigital number found: %d ! \n", number);
     return {0,0};
+=======
+    std::cout << "\n Pandigital number found: " << number << " !\n";
+    std::cin.get();
+    return true;
+>>>>>>> d581247 (omg i'm such an idiot... permutations DAH)
 }
 
 <<<<<<< HEAD
@@ -106,13 +113,17 @@ long double isPandigitalHelper() {
 
 long double totalSum = 0;
 
-for (long unsigned int number = 1000000000; number < 9999999999; number++) {
-    if (containsOneToNine(number)) {    
-        if (isPandigital(number)) {
-            totalSum = totalSum + number;
-        } 
-    }
-}
+std::string s = "123456789";
+    
+    // Sort for permutations even though it is sorted
+    std::sort(s.begin(), s.end());
+
+    std::cout << "All permutations of" << s << " are:" << std::endl;
+    std::stringstream ss;
+    long unsigned int number;
+    do {
+        isPandigital(stoi(s));
+    } while (std::next_permutation(s.begin(), s.end()));
 std::cout << "Total sum" << totalSum << "\n";
 return totalSum;
 }
