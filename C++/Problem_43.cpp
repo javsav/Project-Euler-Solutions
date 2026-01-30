@@ -13,7 +13,7 @@
 #include <cstdio>
 #include <sstream>
 
-bool isPandigital(long unsigned int number) {
+std::pair<int,int> isPandigital(long unsigned int number) {
     int prime_array[8] = {2,3,5,7,11,13,17};
     std::string num = std::to_string(number);
     std::string partial;
@@ -25,10 +25,10 @@ bool isPandigital(long unsigned int number) {
         }
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
-        // printf("\n Current partial: %d \n", partial_num);
+        printf("\n Current partial: %d, Current number: %li \n", partial_num, number);
         if (partial_num % prime_array[prime_index] != 0) {
             printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
-            return false;
+            return {prime_array[prime_index], starting_index};
         } else {
             prime_index++;
             starting_index++;
@@ -37,20 +37,34 @@ bool isPandigital(long unsigned int number) {
         
     }
     printf("\n Pandigital number found: %d ! \n", number);
-    return true;
+    return {0,0};
 }
 
-int main() {
+long double findSum() {
 
-long unsigned int totalsum = 0;
+long double totalsum = 0;
 
 for (long unsigned int number = 111111111; number < 999999999; number++) {
-    if (isPandigital(number)) {
+    std::pair<int, int> indicator = {0,0};
+    std::pair<int,int> isPandigitalNum = isPandigital(number);
+    if (isPandigitalNum == indicator) {
         totalsum += number;
+    } else {
+        std::string additionNumber = "1";
+        for (int x = 0; x < 6 - isPandigitalNum.second; x++) {
+            additionNumber += "0";
+        }
+        long int additionNum;
+        std::istringstream(additionNumber) >> additionNum;
+        number += additionNum;
+        
     }
 }
-printf("\n Total sum is: %d \n", totalsum);
+printf("\n Total sum is: %li \n", totalsum);
 return totalsum;
 }
 
+int main() {
+    findSum();
+}
 
