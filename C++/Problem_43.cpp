@@ -10,11 +10,11 @@
 // d_8d_9d_{10}=289 is divisible by 17
 // Find the sum of all 0 to 9 pandigital numbers with this property.
 #include <string>
-#include <cstdio>
 #include <sstream>
 #include <iostream>
 #include <unordered_set>
 #include <algorithm>
+
 bool isPandigital(long unsigned int number) {
     int prime_array[8] = {2,3,5,7,11,13,17};
     std::stringstream ss;
@@ -29,12 +29,9 @@ bool isPandigital(long unsigned int number) {
         }
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
-        //printf("\n Current partial: %d \n", partial_num);
         if (partial_num % prime_array[prime_index] != 0) {
-            //printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
             return false;
         } else {
-            //printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
             prime_index++;
             starting_index++;
             partial.clear();
