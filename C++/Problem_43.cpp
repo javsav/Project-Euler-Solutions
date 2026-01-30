@@ -69,9 +69,6 @@ long double totalSum = 0;
 
 std::string s = "0123456789";
     
-    // Sort for permutations even though it is sorted
-    std::sort(s.begin(), s.end());
-
     std::stringstream ss;
     long unsigned int number;
     do {
