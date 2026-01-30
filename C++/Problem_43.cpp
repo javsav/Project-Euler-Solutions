@@ -27,7 +27,7 @@ bool isPandigital(int number) {
         } else {
             prime_index++;
             starting_index++;
-            partial = "";
+            partial.clear();
         }
         
     }
