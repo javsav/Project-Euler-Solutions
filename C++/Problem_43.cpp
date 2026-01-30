@@ -12,11 +12,7 @@
 #include <string>
 #include <iostream>
 
-int main() {
-
-}
-
-bool isPandigitial(int number) {
+bool isPandigital(int number) {
     int prime_array[7] = {2,3,5,7,11,13,17};
     std::string num = std::to_string(number);
     std::string partial;
@@ -31,7 +27,19 @@ bool isPandigitial(int number) {
         }
         prime_index++;
         starting_index++;
-
     }
-
 }
+
+int main() {
+
+int totalsum = 0;
+
+for (int number = 111111111; number < 999999999; number++) {
+    if (isPandigital(number)) {
+        totalsum += number;
+    }
+}
+return totalsum;
+}
+
+
