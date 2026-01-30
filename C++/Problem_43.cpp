@@ -21,7 +21,9 @@ std::pair<int,int> isPandigital(long unsigned int number) {
 bool isPandigital(long unsigned int number) {
 >>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
     int prime_array[8] = {2,3,5,7,11,13,17};
-    std::string num = std::to_string(number);
+    std::stringstream ss;
+    ss << number;
+    std::string num = ss.str();
     std::string partial;
     int starting_index = 1;
     int prime_index = 0;
@@ -31,6 +33,7 @@ bool isPandigital(long unsigned int number) {
         }
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
+<<<<<<< HEAD
         printf("\n Current partial: %d, Current number: %li \n", partial_num, number);
         if (partial_num % prime_array[prime_index] != 0) {
 <<<<<<< HEAD
@@ -38,9 +41,15 @@ bool isPandigital(long unsigned int number) {
             return {prime_array[prime_index], starting_index};
 =======
             // printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
+=======
+        printf("\n Current partial: %d \n", partial_num);
+        if (partial_num % prime_array[prime_index] != 0) {
+            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
+>>>>>>> 0de6c43 (Euler is laughing in his grave)
             return false;
 >>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
         } else {
+            printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
             prime_index++;
             starting_index++;
             partial.clear();
