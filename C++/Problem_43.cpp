@@ -16,7 +16,9 @@
 #include <unordered_set>
 bool isPandigital(long unsigned int number) {
     int prime_array[8] = {2,3,5,7,11,13,17};
-    std::string num = std::to_string(number);
+    std::stringstream ss;
+    ss << number;
+    std::string num = ss.str();
     std::string partial;
     int starting_index = 1;
     int prime_index = 0;
@@ -26,11 +28,12 @@ bool isPandigital(long unsigned int number) {
         }
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
-        // printf("\n Current partial: %d \n", partial_num);
+        printf("\n Current partial: %d \n", partial_num);
         if (partial_num % prime_array[prime_index] != 0) {
-            // printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
+            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
             return false;
         } else {
+            printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
             prime_index++;
             starting_index++;
             partial.clear();
