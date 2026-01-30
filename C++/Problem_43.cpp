@@ -12,15 +12,10 @@
 #include <string>
 #include <cstdio>
 #include <sstream>
-<<<<<<< HEAD
-
-std::pair<int,int> isPandigital(long unsigned int number) {
-=======
 #include <iostream>
 #include <unordered_set>
 #include <algorithm>
 bool isPandigital(long unsigned int number) {
->>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
     int prime_array[8] = {2,3,5,7,11,13,17};
     std::stringstream ss;
     ss << number;
@@ -34,63 +29,22 @@ bool isPandigital(long unsigned int number) {
         }
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
-<<<<<<< HEAD
-        printf("\n Current partial: %d, Current number: %li \n", partial_num, number);
+        //printf("\n Current partial: %d \n", partial_num);
         if (partial_num % prime_array[prime_index] != 0) {
-<<<<<<< HEAD
-            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
-            return {prime_array[prime_index], starting_index};
-=======
-            // printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
-=======
-        printf("\n Current partial: %d \n", partial_num);
-        if (partial_num % prime_array[prime_index] != 0) {
-            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
->>>>>>> 0de6c43 (Euler is laughing in his grave)
+            //printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
             return false;
->>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
         } else {
-            printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
+            //printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
             prime_index++;
             starting_index++;
             partial.clear();
         }
         
     }
-<<<<<<< HEAD
-    printf("\n Pandigital number found: %d ! \n", number);
-    return {0,0};
-=======
     std::cout << "\n Pandigital number found: " << number << " !\n";
-    std::cin.get();
     return true;
->>>>>>> d581247 (omg i'm such an idiot... permutations DAH)
 }
 
-<<<<<<< HEAD
-long double findSum() {
-
-long double totalsum = 0;
-
-for (long unsigned int number = 111111111; number < 999999999; number++) {
-    std::pair<int, int> indicator = {0,0};
-    std::pair<int,int> isPandigitalNum = isPandigital(number);
-    if (isPandigitalNum == indicator) {
-        totalsum += number;
-    } else {
-        std::string additionNumber = "1";
-        for (int x = 0; x < 6 - isPandigitalNum.second; x++) {
-            additionNumber += "0";
-        }
-        long int additionNum;
-        std::istringstream(additionNumber) >> additionNum;
-        number += additionNum;
-        
-    }
-}
-printf("\n Total sum is: %li \n", totalsum);
-return totalsum;
-=======
 bool containsOneToNine(long unsigned int num) {
 std::unordered_set<char> numbersSet = {'0', '1','2','3','4','5','6','7','8','9'};
 
@@ -113,16 +67,21 @@ long double isPandigitalHelper() {
 
 long double totalSum = 0;
 
-std::string s = "123456789";
+std::string s = "0123456789";
     
     // Sort for permutations even though it is sorted
     std::sort(s.begin(), s.end());
 
-    std::cout << "All permutations of" << s << " are:" << std::endl;
     std::stringstream ss;
     long unsigned int number;
     do {
-        isPandigital(stoi(s));
+        std::stringstream ss(s);
+        ss >> number;
+        
+
+        if (isPandigital(number)) {
+            totalSum += number;
+        };
     } while (std::next_permutation(s.begin(), s.end()));
 std::cout << "Total sum" << totalSum << "\n";
 return totalSum;
@@ -131,10 +90,5 @@ return totalSum;
 int main() {
     isPandigitalHelper();
     return 0;
->>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
-}
-
-int main() {
-    findSum();
 }
 
