@@ -11,22 +11,11 @@
 // Find the sum of all 0 to 9 pandigital numbers with this property.
 #include <string>
 #include <sstream>
-<<<<<<< HEAD
 #include <iostream>
 #include <unordered_set>
 #include <algorithm>
 
 bool isPandigital(long unsigned int number) {
-=======
-<<<<<<< HEAD
-
-std::pair<int,int> isPandigital(long unsigned int number) {
-=======
-#include <iostream>
-#include <unordered_set>
-bool isPandigital(long unsigned int number) {
->>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
->>>>>>> 83dfe5c (really should read the first line of the description next time :D)
     int prime_array[8] = {2,3,5,7,11,13,17};
     std::stringstream ss;
     ss << number;
@@ -41,17 +30,7 @@ bool isPandigital(long unsigned int number) {
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
         if (partial_num % prime_array[prime_index] != 0) {
-<<<<<<< HEAD
             return false;
-=======
-<<<<<<< HEAD
-            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
-            return {prime_array[prime_index], starting_index};
-=======
-            // printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
-            return false;
->>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
->>>>>>> 83dfe5c (really should read the first line of the description next time :D)
         } else {
             prime_index++;
             starting_index++;
@@ -63,12 +42,7 @@ bool isPandigital(long unsigned int number) {
     return true;
 }
 
-<<<<<<< HEAD
 long long unsigned int isPandigitalHelper() {
-=======
-<<<<<<< HEAD
-long double findSum() {
->>>>>>> 83dfe5c (really should read the first line of the description next time :D)
 
 long long unsigned int totalSum = 0;
 
@@ -80,7 +54,6 @@ std::string s = "0123456789";
         std::stringstream ss(s);
         ss >> number;
         
-<<<<<<< HEAD
 
         if (isPandigital(number)) {
             totalSum += number;
@@ -88,54 +61,9 @@ std::string s = "0123456789";
     } while (std::next_permutation(s.begin(), s.end()));
 std::cout << "\n Total sum: " << totalSum << "\n";
 return totalSum;
-=======
-    }
-}
-printf("\n Total sum is: %li \n", totalsum);
-return totalsum;
-=======
-bool containsOneToNine(long unsigned int num) {
-std::unordered_set<char> numbersSet = {'0', '1','2','3','4','5','6','7','8','9'};
-
-std::stringstream ss;
-ss << num;
-std::string theNumber = ss.str();
-for (int i = 0; i < 10; i++) {
-    if (numbersSet.count(theNumber[i])) {
-        numbersSet.erase(theNumber[i]);
-    }
-}
-if (numbersSet.empty()) {
-    std::cout << "\n Number: " << num << " contains zero to nine \n";
-    return true;
-}
-return false;
-}
-
-long double isPandigitalHelper() {
-
-long double totalSum = 0;
-
-for (long unsigned int number = 1000000000; number < 9999999999; number++) {
-    if (containsOneToNine(number)) {    
-        if (isPandigital(number)) {
-            totalSum = totalSum + number;
-        } 
-    }
-}
-std::cout << "Total sum" << totalSum << "\n";
-return totalSum;
-}
-
-int main() {
-    isPandigitalHelper();
-    return 0;
->>>>>>> 6dcd2c2 (really should read the first line of the description next time :D)
->>>>>>> 83dfe5c (really should read the first line of the description next time :D)
 }
 
 int main() {
     isPandigitalHelper();
     return 0;
 }
-
