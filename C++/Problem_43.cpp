@@ -28,6 +28,7 @@ bool isPandigital(int number) {
         prime_index++;
         starting_index++;
     }
+    return true;
 }
 
 int main() {
