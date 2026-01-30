@@ -42,24 +42,6 @@ bool isPandigital(long unsigned int number) {
     return true;
 }
 
-bool containsOneToNine(long unsigned int num) {
-std::unordered_set<char> numbersSet = {'0', '1','2','3','4','5','6','7','8','9'};
-
-std::stringstream ss;
-ss << num;
-std::string theNumber = ss.str();
-for (int i = 0; i < 10; i++) {
-    if (numbersSet.count(theNumber[i])) {
-        numbersSet.erase(theNumber[i]);
-    }
-}
-if (numbersSet.empty()) {
-    std::cout << "\n Number: " << num << " contains zero to nine \n";
-    return true;
-}
-return false;
-}
-
 long double isPandigitalHelper() {
 
 long double totalSum = 0;
