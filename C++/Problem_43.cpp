@@ -28,19 +28,19 @@ bool isPandigital(long unsigned int number) {
         }
         int partial_num = 0;
         std::istringstream(partial) >> partial_num;
-        printf("\n Current partial: %d \n", partial_num);
+        //printf("\n Current partial: %d \n", partial_num);
         if (partial_num % prime_array[prime_index] != 0) {
-            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
+            //printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
             return false;
         } else {
-            printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
+            //printf("\n Partial %d was divisibile by %d \n", partial_num, prime_array[prime_index]);
             prime_index++;
             starting_index++;
             partial.clear();
         }
         
     }
-    printf("\n Pandigital number found: %d ! \n", number);
+    std::cout << "\n Pandigital number found: " << number << " !\n";
     return true;
 }
 
