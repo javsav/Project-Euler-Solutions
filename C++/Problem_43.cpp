@@ -10,7 +10,7 @@
 // d_8d_9d_{10}=289 is divisible by 17
 // Find the sum of all 0 to 9 pandigital numbers with this property.
 #include <string>
-#include <iostream>
+#include <cstdio>
 
 bool isPandigital(int number) {
     int prime_array[7] = {2,3,5,7,11,13,17};
@@ -28,6 +28,7 @@ bool isPandigital(int number) {
         prime_index++;
         starting_index++;
     }
+    printf("\n Pandigital number found: %d ! \n", number);
     return true;
 }
 
@@ -40,6 +41,7 @@ for (int number = 111111111; number < 999999999; number++) {
         totalsum += number;
     }
 }
+printf("\n Total sum is: %d \n", totalsum);
 return totalsum;
 }
 
