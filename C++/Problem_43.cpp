@@ -12,7 +12,8 @@
 #include <string>
 #include <cstdio>
 #include <sstream>
-
+#include <iostream>
+#include <unordered_set>
 bool isPandigital(long unsigned int number) {
     int prime_array[8] = {2,3,5,7,11,13,17};
     std::string num = std::to_string(number);
@@ -27,7 +28,7 @@ bool isPandigital(long unsigned int number) {
         std::istringstream(partial) >> partial_num;
         // printf("\n Current partial: %d \n", partial_num);
         if (partial_num % prime_array[prime_index] != 0) {
-            printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
+            // printf("\n Partial %d was not divisibile by %d \n", partial_num, prime_array[prime_index]);
             return false;
         } else {
             prime_index++;
@@ -40,17 +41,42 @@ bool isPandigital(long unsigned int number) {
     return true;
 }
 
-int main() {
+bool containsOneToNine(long unsigned int num) {
+std::unordered_set<char> numbersSet = {'0', '1','2','3','4','5','6','7','8','9'};
 
-long unsigned int totalsum = 0;
-
-for (long unsigned int number = 111111111; number < 999999999; number++) {
-    if (isPandigital(number)) {
-        totalsum += number;
+std::stringstream ss;
+ss << num;
+std::string theNumber = ss.str();
+for (int i = 0; i < 10; i++) {
+    if (numbersSet.count(theNumber[i])) {
+        numbersSet.erase(theNumber[i]);
     }
 }
-printf("\n Total sum is: %d \n", totalsum);
-return totalsum;
+if (numbersSet.empty()) {
+    std::cout << "\n Number: " << num << " contains zero to nine \n";
+    return true;
+}
+return false;
+}
+
+long double isPandigitalHelper() {
+
+long double totalSum = 0;
+
+for (long unsigned int number = 1000000000; number < 9999999999; number++) {
+    if (containsOneToNine(number)) {    
+        if (isPandigital(number)) {
+            totalSum = totalSum + number;
+        } 
+    }
+}
+std::cout << "Total sum" << totalSum << "\n";
+return totalSum;
+}
+
+int main() {
+    isPandigitalHelper();
+    return 0;
 }
 
 
