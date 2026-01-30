@@ -42,9 +42,9 @@ bool isPandigital(long unsigned int number) {
     return true;
 }
 
-long double isPandigitalHelper() {
+long long unsigned int isPandigitalHelper() {
 
-long double totalSum = 0;
+long long unsigned int totalSum = 0;
 
 std::string s = "0123456789";
     
@@ -59,7 +59,7 @@ std::string s = "0123456789";
             totalSum += number;
         };
     } while (std::next_permutation(s.begin(), s.end()));
-std::cout << "Total sum" << totalSum << "\n";
+std::cout << "\n Total sum: " << totalSum << "\n";
 return totalSum;
 }
 
