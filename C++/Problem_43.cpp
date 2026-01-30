@@ -42,7 +42,6 @@ bool isPandigital(long unsigned int number) {
         
     }
     std::cout << "\n Pandigital number found: " << number << " !\n";
-    std::cin.get();
     return true;
 }
 
@@ -68,16 +67,21 @@ long double isPandigitalHelper() {
 
 long double totalSum = 0;
 
-std::string s = "123456789";
+std::string s = "0123456789";
     
     // Sort for permutations even though it is sorted
     std::sort(s.begin(), s.end());
 
-    std::cout << "All permutations of" << s << " are:" << std::endl;
     std::stringstream ss;
     long unsigned int number;
     do {
-        isPandigital(stoi(s));
+        std::stringstream ss(s);
+        ss >> number;
+        
+
+        if (isPandigital(number)) {
+            totalSum += number;
+        };
     } while (std::next_permutation(s.begin(), s.end()));
 std::cout << "Total sum" << totalSum << "\n";
 return totalSum;
