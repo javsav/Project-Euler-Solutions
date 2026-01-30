@@ -24,9 +24,12 @@ bool isPandigital(int number) {
         }
         if (std::stoi(partial) % prime_array[prime_index] != 0) {
             return false;
+        } else {
+            prime_index++;
+            starting_index++;
+            partial = "";
         }
-        prime_index++;
-        starting_index++;
+        
     }
     printf("\n Pandigital number found: %d ! \n", number);
     return true;
